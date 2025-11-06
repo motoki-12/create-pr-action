@@ -23,4 +23,5 @@ jobs:
           git config --global user.name "${USERNAME}"
           git config --global user.email "${EMAIL}"
           version=$(bash scripts/bump.sh "${BUMP_LEVEL}")
-          gh release create "v${version}" --title "${version}" --generate-notes
+          gh release delete "${version}" --yes 2>/dev/null || true
+          gh release create "${version}" --title "${version}" --generate-notes
